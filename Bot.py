@@ -4,7 +4,7 @@ import discord
 from discord.ext import commands
 from discord.utils import get
 import asyncio
-from asyncio import Server
+from asyncio import Server, timeout
 activity = "Watching"
 
 class MyClient(discord.Client):
@@ -28,11 +28,9 @@ async def on_ready():
     print(f'Logged in as {bot.user} (ID: {bot.user.id})')
     print('------')
     
-@bot.command()
-async def embed(embed, userinput):
-    Embedded = discord.Embed(title="Embed", description=userinput)
-    await embed.send(embed = Embedded)
-    await embed.send("Embed sent", delete_after=5)
+
+
+
 
 @bot.command()
 async def status(send):
@@ -161,4 +159,4 @@ async def version(ver):
 
 
 
-bot.run('token here')
+bot.run('token')
