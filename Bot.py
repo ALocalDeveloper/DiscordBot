@@ -29,10 +29,10 @@ async def on_ready():
     print('------')
     
 @bot.command()
-async def embed(embed):
-    Embedded = discord.Embed(title="Test")
-    await embed.send(Embedded)
-    await embed.send("Embed sent")
+async def embed(embed, userinput):
+    Embedded = discord.Embed(title="Embed", description=userinput)
+    await embed.send(embed = Embedded)
+    await embed.send("Embed sent", delete_after=5)
 
 @bot.command()
 async def status(send):
@@ -117,7 +117,7 @@ class MyHelp(commands.HelpCommand):
         filtered = await self.filter_commands(self.context.bot.commands, sort=True) # returns a list of command objects
         names = [command.name for command in filtered] # iterating through the commands objects getting names
         available_commands = "\n".join(names) # joining the list of names by a new line
-        embed  = disnake.Embed(description=available_commands)
+        embed  = disnake.Embed(title="Help",description=available_commands)
         await self.context.send(embed=embed)
 
     async def send_command_help(self, command):
@@ -145,8 +145,20 @@ async def rickroll(roll):
     await roll.send("https://tenor.com/view/rickroll-roll-rick-never-gonna-give-you-up-never-gonna-gif-22954713")
     
 
+@bot.command()
+async def wip(wip):
+    
+    await wip.send("Work in progress!")
+
+@bot.command()
+async def version(ver):
+    vers = "Version 1.1.4-fix1"
+    embed = discord.Embed(title="Version Branch: Test", description=vers, color=0x1355ed)
+    await ver.send(embed = embed)
+    
 
 
 
 
-bot.run('Enter token here')
+
+bot.run('token here')
